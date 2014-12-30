@@ -1,0 +1,28 @@
+{% extends "GamePlayerBundle::layout.html.twig" %}
+
+
+
+{% block title %}Página de Snowflake{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <div class="centrar">
+            <h2>Registrate</h2>
+            <p>¡No te vas a arrepetir!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content2 %}
+    <div class="container">
+        <form action="{{ path('create') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+            {{ form_widget(form) }}
+            <div>
+                <input id="boton-jugar-principal" class="btn btn-lg btn-success" role="button" type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

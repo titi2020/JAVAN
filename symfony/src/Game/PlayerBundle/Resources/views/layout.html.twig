@@ -1,0 +1,193 @@
+{% extends '::base.html.twig' %}
+
+{% block head %}
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+{% endblock %}
+
+{% block title '<-- Snowflake -->' %}
+
+{% block body %}
+
+
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ path('home') }}">Snowflake</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+
+                    <a type="button" class="btn btn-info navbar-btn navbar-right" href="{{ path('how') }}">¿Como funciona?</a>
+
+                    <form action="{{ path("fos_user_security_check") }}" method="post" class="navbar-form navbar-static">
+                        <div class="form-group">
+                            <input type="text"  placeholder="Email" class="form-control" id="username" name="_username" value="" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" class="form-control" id="password" name="_password" required="required" />
+                        </div>
+
+                        <input type="submit" class="btn btn-success" name="_submit" value="Login" />
+                    </form>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </nav>
+
+    {% else %}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ path('home') }}">Snowflake</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <a type="button" class="btn btn-info navbar-btn navbar-right" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                    <div class="navbar-brand navbar-right">
+                        ¡Hola {{ app.user.username }}!
+                    </div>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </nav>
+
+    {% endif %}
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block content2 %}
+
+    {% endblock %}
+
+
+
+    <div class="container">
+
+
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-message">
+                <em>Notice</em>: {{ flashMessage }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <ul class="sinpunto">
+                        <li>
+                            <h4>Explorar</h4>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/trofeos" title="Galería de trofeos">
+                                Trofeos                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/juegos-con-logros" title="Juegos con logros">
+                                Logros                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/comunidad" title="Comunidad">
+                                Comunidad                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/avatares" title="Centro de Avatares">
+                                Centro de Avatares                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/multijugador" title="Multijugador">
+                                Multijugador                </a>
+                        </li>
+                        <li>
+                            <a href="http://minitorneos.minijuegos.com/" target="_blank" title="Minitorneos">
+                                Minitorneos                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/events" title="Eventos">
+                                Eventos y novedades                </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <ul class="sinpunto">
+                        <li>
+                            <h4>Recursos</h4>
+                        </li>
+                        <li>
+                            <a href="http://m.minijuegos.com/" title="Mobile Site">
+                                Versión móvil                    </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <ul class="sinpunto">
+                        <li>
+                            <h4>Soporte</h4>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/support" title="Ayuda">
+                                Ayuda                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/experience-and-currency" title="Ayuda">
+                                Sobre la experiencia                </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <ul class="sinpunto">
+                        <li>
+                            <h4>Social</h4>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/MiniJuegoscom" title="Facebook" target="_blank">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/minijuegos" title="Twitter" target="_blank">Twitter</a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/u/0/104475669694958151889" target="_blank" title="Google+" rel="publisher">Google+</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <ul class="sinpunto">
+                        <li>
+                            <h4>Corporate</h4>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/support/terms" title="Términos de Uso">
+                                Términos de Uso                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/support/privacy" title="Privacidad">
+                                Privacidad                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/support/cookies" title="Cookies">
+                                Cookies                </a>
+                        </li>
+                        <li>
+                            <a href="http://www.minijuegos.com/jobs" title="Empleo">
+                                Empleo                </a>
+                        </li>
+                        <li>
+                            <a href="http://about.miniplay.com" title="About">
+                                About                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+{% endblock %}
+

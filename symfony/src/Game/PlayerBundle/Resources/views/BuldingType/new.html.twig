@@ -1,0 +1,15 @@
+{% extends "GamePlayerBundle::layout_crud.html.twig" %}
+
+{% block content %}
+    <h1>Bulding type creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('buldingType') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

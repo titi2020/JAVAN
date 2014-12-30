@@ -1,0 +1,9 @@
+_welcome:
+    path:     /
+    defaults: { _controller: GamePlayerBundle:Main:index }
+
+
+
+
+
+
