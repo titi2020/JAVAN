@@ -6,6 +6,19 @@
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
+    "repositories": [
+		{
+		"type": "package",
+		"package": {
+			"name": "jquery/jquery",
+			"version": "1.9.1",
+			"dist": {
+					"url": "http://code.jquery.com/jquery-1.9.1.js",
+					"type": "file"
+				}
+			}
+		}
+	],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.5.*",
@@ -17,7 +30,14 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/user-bundle": "*",
+        "gedmo/doctrine-extensions": "dev-master",
+        "braincrafted/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "2.3.*",
+        "jquery/jquery": "1.9.*",
+        "oyejorge/less.php": "~1.5",
+        "twbs/bootstrap": "3.0.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
