@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: doctrine_extensions.yml }
 
 framework:
     #esi:             ~
@@ -61,12 +62,22 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
         mappings:
-                    translatable:
-                        type: annotation
-                        alias: Gedmo
-                        prefix: Gedmo\Translatable\Entity
-                        # make sure vendor library location is correct
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+              translatable:
+                  type: annotation
+                  alias: Gedmo
+                  prefix: Gedmo\Translatable\Entity
+                  # make sure vendor library location is correct
+                  dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+              loggable:
+                  type: annotation
+                  alias: Gedmo
+                  prefix: Gedmo\Loggable\Entity
+                  dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+              tree:
+                  type: annotation
+                  alias: Gedmo
+                  prefix: Gedmo\Tree\Entity
+                  dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -79,13 +90,15 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Game\PlayerBundle\Entity\User
+    user_class: Game\PlayerBundle\Entity\Player
 
 
 braincrafted_bootstrap:
    assets_dir: "%kernel.root_dir%/../vendor/twitter/bootstrap"
    jquery_path:  "%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js"
    less_filter: "lessphp"
+
+
 
 
 

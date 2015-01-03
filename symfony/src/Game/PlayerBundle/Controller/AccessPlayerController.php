@@ -2,9 +2,8 @@
 
 namespace Game\PlayerBundle\Controller;
 
-use FOS\UserBundle\Controller\SecurityController;
-use Game\PlayerBundle\Entity\Player;
-use Game\PlayerBundle\Form\PlayerType;
+use Game\PlayerBundle\Entity\AccessPlayer;
+use Game\PlayerBundle\Form\AccessPlayerType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -14,17 +13,17 @@ use Game\PlayerBundle\Entity\Game;
 use Game\PlayerBundle\Form\GameType;
 
 /**
- * Game controller.
+ * AccessPlayer controller.
  *
- * @Route("/player")
+ * @Route("/accessPlayer")
  */
-class PlayerController extends SecurityController
+class AccessPlayerController extends Controller
 {
 
     /**
      * Lists all Game entities.
      *
-     * @Route("/", name="player")
+     * @Route("/", name="accessPlayer")
      * @Method("GET")
      * @Template()
      */
@@ -32,7 +31,7 @@ class PlayerController extends SecurityController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('GamePlayerBundle:Player')->findAll();
+        $entities = $em->getRepository('GamePlayerBundle:AccessPlayer')->findAll();
 
         return array(
             'entities' => $entities,
@@ -41,13 +40,13 @@ class PlayerController extends SecurityController
     /**
      * Creates a new Game entity.
      *
-     * @Route("/", name="player_create")
+     * @Route("/", name="accessPlayer_create")
      * @Method("POST")
-     * @Template("GamePlayerBundle:Player:new.html.twig")
+     * @Template("GamePlayerBundle:AccessPlayer:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Player();
+        $entity = new AccessPlayer();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -56,7 +55,7 @@ class PlayerController extends SecurityController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('player_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('building_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -66,16 +65,16 @@ class PlayerController extends SecurityController
     }
 
     /**
-     * Creates a form to create a Player entity.
+     * Creates a form to create a Game entity.
      *
      * @param Game $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Player $entity)
+    private function createCreateForm(AccessPlayer $entity)
     {
-        $form = $this->createForm(new PlayerType(), $entity, array(
-            'action' => $this->generateUrl('player_create'),
+        $form = $this->createForm(new AccessPlayerType(), $entity, array(
+            'action' => $this->generateUrl('accessPlayer_create'),
             'method' => 'POST',
         ));
 
@@ -87,13 +86,13 @@ class PlayerController extends SecurityController
     /**
      * Displays a form to create a new Game entity.
      *
-     * @Route("/new", name="player_new")
+     * @Route("/new", name="accessPlayer_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Player();
+        $entity = new AccessPlayer();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -105,7 +104,7 @@ class PlayerController extends SecurityController
     /**
      * Finds and displays a Game entity.
      *
-     * @Route("/{id}", name="player_show")
+     * @Route("/{id}", name="accessPlayer_show")
      * @Method("GET")
      * @Template()
      */
@@ -113,10 +112,10 @@ class PlayerController extends SecurityController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('GamePlayerBundle:Player')->find($id);
+        $entity = $em->getRepository('GamePlayerBundle:AccessPlayer')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Player entity.');
+            throw $this->createNotFoundException('Unable to find AccessPlayer entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -130,7 +129,7 @@ class PlayerController extends SecurityController
     /**
      * Displays a form to edit an existing Game entity.
      *
-     * @Route("/{id}/edit", name="player_edit")
+     * @Route("/{id}/edit", name="accessPlayer_edit")
      * @Method("GET")
      * @Template()
      */
@@ -138,10 +137,10 @@ class PlayerController extends SecurityController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('GamePlayerBundle:Player')->find($id);
+        $entity = $em->getRepository('GamePlayerBundle:AccessPlayer')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Player entity.');
+            throw $this->createNotFoundException('Unable to find AccessPlayer entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -155,16 +154,16 @@ class PlayerController extends SecurityController
     }
 
     /**
-    * Creates a form to edit a Game entity.
+    * Creates a form to edit a AccessPlayer entity.
     *
-    * @param Game $entity The entity
+    * @param $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Player $entity)
+    private function createEditForm(AccessPlayer $entity)
     {
-        $form = $this->createForm(new PlayerType(), $entity, array(
-            'action' => $this->generateUrl('player_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new AccessPlayerType(), $entity, array(
+            'action' => $this->generateUrl('accessPlayer_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -173,20 +172,20 @@ class PlayerController extends SecurityController
         return $form;
     }
     /**
-     * Edits an existing Game entity.
+     * Edits an existing AccessPlayer entity.
      *
-     * @Route("/{id}", name="player_update")
+     * @Route("/{id}", name="accessPlayer_update")
      * @Method("PUT")
-     * @Template("GamePlayerBundle:Player:edit.html.twig")
+     * @Template("GamePlayerBundle:AccessPlayer:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('GamePlayerBundle:Player')->find($id);
+        $entity = $em->getRepository('GamePlayerBundle:AccessPlayer')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Player entity.');
+            throw $this->createNotFoundException('Unable to find AccessPlayer entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -196,7 +195,7 @@ class PlayerController extends SecurityController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('player_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('accessPlayer_edit', array('id' => $id)));
         }
 
         return array(
@@ -206,9 +205,9 @@ class PlayerController extends SecurityController
         );
     }
     /**
-     * Deletes a Game entity.
+     * Deletes a AccessPlayer entity.
      *
-     * @Route("/{id}", name="player_delete")
+     * @Route("/{id}", name="accessPlayer_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -218,17 +217,17 @@ class PlayerController extends SecurityController
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('GamePlayerBundle:Player')->find($id);
+            $entity = $em->getRepository('GamePlayerBundle:AccessPlayer')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Player entity.');
+                throw $this->createNotFoundException('Unable to find AccessPlayer entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('player'));
+        return $this->redirect($this->generateUrl('accessPlayer'));
     }
 
     /**
@@ -241,7 +240,7 @@ class PlayerController extends SecurityController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('player_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('accessPlayer_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

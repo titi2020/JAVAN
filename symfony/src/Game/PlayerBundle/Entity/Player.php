@@ -3,79 +3,85 @@
 namespace Game\PlayerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Model\User as BaseUser;
 /**
- * Game
+ * Player
  *
  * @ORM\Table(name="player")
  * @ORM\Entity(repositoryClass="Game\PlayerBundle\Entity\PlayerRepository")
  */
-class Player
+
+class Player extends BaseUser
 {
+
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
+
+    public function __construct()
+    {
+        // Mantener esta línea para llamar al constructor
+        // de la clase padre
+        parent::__construct();
+
+        // Aquí podremos añadir el código necesario.
+    }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first", type="string", length=255, nullable=true)
+     */
+    private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(name="last", type="string", length=255, nullable=true)
      */
-    private $username;
+    private $lastname;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255)
-     */
-    private $password;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
+     * @return mixed
      */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param string $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
 
     /**
      * @return string
      */
-    public function getPassword()
+    public function getFirstname()
     {
-        return $this->password;
+        return $this->firstname;
     }
 
     /**
-     * @param string $password
+     * @param string $firstname
      */
-    public function setPassword($password)
+    public function setFirstname($firstname)
     {
-        $this->password = $password;
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
     }
 
 }
